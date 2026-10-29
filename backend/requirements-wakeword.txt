@@ -1,0 +1,2 @@
+# Optional: openWakeWord engine (code Apache-2.0; pre-trained models CC BY-NC-SA 4.0, non-commercial)
+openwakeword>=0.6

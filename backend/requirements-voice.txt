@@ -1,0 +1,5 @@
+# Optional local voice. Speech models are downloaded only when you click "Download" in Voice settings.
+numpy>=1.26
+sounddevice>=0.4      # microphone capture via PortAudio (MIT); wheels bundle PortAudio on Windows
+faster-whisper>=1.0   # speech-to-text (MIT), CPU int8 via CTranslate2
+av>=11               # audio decoding (PyAV); NEXUS decodes itself, so PyAV 19+ works too

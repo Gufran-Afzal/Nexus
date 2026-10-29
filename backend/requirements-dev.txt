@@ -1,0 +1,10 @@
+-r requirements.txt
+pytest>=8
+pytest-asyncio>=0.23
+respx>=0.21
+ruff>=0.4
+mypy>=1.10
+numpy>=1.26
+av>=11
+pystray>=0.19    # tray menu is built in a test (dummy backend) so a bad callback signature cannot ship again
+Pillow>=10

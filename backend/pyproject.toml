@@ -1,0 +1,35 @@
+# Dependencies live in requirements*.txt (installed by scripts/setup.ps1). This file holds tool configuration.
+[project]
+name = "nexus-backend"
+version = "0.7.0"
+description = "NEXUS - Your Local AI Engineering Partner (backend)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 130
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "ASYNC"]
+ignore = ["S101", "S603", "S607", "B008", "S311", "ASYNC240", "ASYNC109"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "ASYNC"]
+"app/windows/appcatalog.py" = ["E501"]  # the PowerShell scan script
+"app/services/skills.py" = ["E501"]  # spoken-phrase regexes and example sentences
+"app/agent/*.py" = ["E501"]
+"app/services/automation.py" = ["E501"]
+"tests/test_automation.py" = ["S", "ASYNC", "E501"]
+"benchmarks/*" = ["E501", "S", "ASYNC"]
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+python_version = "3.11"
+ignore_missing_imports = true
+check_untyped_defs = true
+warn_unused_ignores = false

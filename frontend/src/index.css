@@ -1,0 +1,85 @@
+@import "highlight.js/styles/github-dark.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Design tokens: Apple-style system colours, dark (default) and light ---------- */
+:root {
+  --ink-950: 10 10 13; --ink-900: 24 24 28; --ink-850: 36 36 42; --ink-800: 46 46 53; --ink-700: 62 62 70; --ink-600: 88 88 98;
+  --t-100: 245 245 247; --t-200: 232 232 237; --t-300: 200 200 208; --t-400: 160 160 170; --t-500: 134 134 144; --t-600: 100 100 110;
+  --fg: 255 255 255;
+  --accent: 10 132 255; --accent-soft: 100 170 255; --accent-deep: 0 112 235;
+  --green: 48 209 88; --orange: 255 159 10; --red: 255 69 58; --purple: 191 90 242; --teal: 64 200 224; --pink: 255 55 95;
+  --glass: 28 28 32; --glass-alpha: 0.62; --hairline: 255 255 255; --hairline-alpha: 0.09;
+  color-scheme: dark;
+}
+:root:not(.dark) {
+  --ink-950: 242 242 247; --ink-900: 255 255 255; --ink-850: 242 242 247; --ink-800: 233 233 238; --ink-700: 220 220 226; --ink-600: 199 199 207;
+  --t-100: 29 29 31; --t-200: 44 44 46; --t-300: 72 72 74; --t-400: 99 99 102; --t-500: 128 128 134; --t-600: 174 174 178;
+  --fg: 0 0 0;
+  --accent: 0 122 255; --accent-soft: 0 102 214; --accent-deep: 0 98 204;
+  --green: 52 199 89; --orange: 255 149 0; --red: 255 59 48; --purple: 175 82 222; --teal: 48 176 199; --pink: 255 45 85;
+  --glass: 255 255 255; --glass-alpha: 0.72; --hairline: 0 0 0; --hairline-alpha: 0.08;
+  color-scheme: light;
+}
+
+html, body, #root { height: 100%; }
+body {
+  font-family: theme("fontFamily.sans");
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background: rgb(var(--ink-950));
+  color: rgb(var(--t-200));
+  letter-spacing: -0.003em;
+}
+h1, h2, h3 { font-family: theme("fontFamily.display"); letter-spacing: -0.02em; }
+::selection { background: rgb(var(--accent) / 0.3); }
+* { scrollbar-width: thin; scrollbar-color: rgb(var(--ink-600) / 0.7) transparent; }
+:focus-visible { outline: 2px solid rgb(var(--accent) / 0.8); outline-offset: 2px; }
+
+/* A soft ambient wash behind the glass panels gives the blur something to pick up. */
+.ambient {
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, rgb(var(--accent) / 0.14), transparent 60%),
+    radial-gradient(50rem 40rem at -10% 110%, rgb(var(--purple) / 0.10), transparent 60%),
+    rgb(var(--ink-950));
+}
+/* Translucent "material": blurs and saturates whatever is behind it, like macOS vibrancy. */
+.glass {
+  background: rgb(var(--glass) / var(--glass-alpha));
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  backdrop-filter: blur(28px) saturate(1.6);
+  box-shadow: inset 0 0 0 0.5px rgb(var(--hairline) / var(--hairline-alpha));
+}
+.hairline { box-shadow: inset 0 0 0 0.5px rgb(var(--hairline) / var(--hairline-alpha)); }
+.card-surface {
+  background: rgb(var(--ink-900) / 0.82);
+  box-shadow: inset 0 0 0 0.5px rgb(var(--hairline) / var(--hairline-alpha)), theme("boxShadow.card");
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+}
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Tinted text colours chosen for dark backgrounds need darker equivalents on light ones. */
+:root:not(.dark) .text-emerald-200, :root:not(.dark) .text-emerald-300, :root:not(.dark) .text-emerald-400 { color: #1b7f3a; }
+:root:not(.dark) .text-rose-200, :root:not(.dark) .text-rose-300, :root:not(.dark) .text-rose-400 { color: #c4261d; }
+:root:not(.dark) .text-amber-200, :root:not(.dark) .text-amber-300, :root:not(.dark) .text-amber-400 { color: #a15c00; }
+:root:not(.dark) .text-sky-300, :root:not(.dark) .text-cyan-200, :root:not(.dark) .text-cyan-300 { color: #0a6cb8; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.nexus-md > * + * { margin-top: 0.6em; }
+.nexus-md h1, .nexus-md h2, .nexus-md h3 { font-weight: 600; color: rgb(var(--fg)); margin-top: 1em; }
+.nexus-md h1 { font-size: 1.15rem; } .nexus-md h2 { font-size: 1.05rem; } .nexus-md h3 { font-size: 0.95rem; }
+.nexus-md ul { list-style: disc; padding-left: 1.3rem; } .nexus-md ol { list-style: decimal; padding-left: 1.3rem; }
+.nexus-md li + li { margin-top: 0.2em; }
+.nexus-md :not(pre) > code { background: rgb(var(--ink-800)); border-radius: 6px; padding: 0.08em 0.4em; font-size: 0.88em; font-family: theme("fontFamily.mono"); }
+.nexus-md pre { border-radius: 14px; overflow: hidden; }
+.nexus-md pre code { font-family: theme("fontFamily.mono"); background: transparent !important; padding: 0 !important; }
+.nexus-md blockquote { border-left: 3px solid rgb(var(--ink-600)); padding-left: 0.8rem; color: rgb(var(--t-400)); }
+.nexus-md table { border-collapse: collapse; font-size: 0.85rem; }
+.nexus-md th, .nexus-md td { border: 1px solid rgb(var(--ink-700)); padding: 0.3rem 0.6rem; }
+.nexus-md a { word-break: break-word; color: rgb(var(--accent-soft)); }
