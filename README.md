@@ -5,11 +5,6 @@ server on `127.0.0.1`, a web UI in your browser, and a system-tray icon. Languag
 [Ollama](https://ollama.com) on your own machine; speech recognition and speech output are local too.
 No cloud AI, no telemetry, no hidden network fallbacks.
 
-> **Honest expectations.** A 7B model on a laptop CPU (i7-8650U) is much weaker and slower than the best
-> hosted models — expect roughly 3–8 words per second and occasional mistakes. NEXUS compensates with
-> transparent context retrieval (it shows exactly which files it used), proposals you review as diffs,
-> commands you approve, and test results it reports verbatim instead of claiming success.
-
 ## What it does
 
 | Area | What you get |
